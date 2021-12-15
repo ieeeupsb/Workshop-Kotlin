@@ -43,6 +43,23 @@ fun main() {
 
 ---
 
+## Comments
+
+There are two types of comments in Kotlin:
+
+```kotlin
+// Single line comment 
+```
+
+```kotlin
+/* This is a multi-line comment. I'm writing this 
+ * text to show you that we can write the comments
+ * in multiple lines
+ */
+```
+
+---
+
 template: slide_section
 
 # Variables
@@ -399,6 +416,66 @@ fun add(x: Int, y: Int) = x + y
 
 template: slide_section
 
+# Arrays
+
+---
+
+## Array basics
+
+Arrays are used to organize data in programming so that a related set of values can be easily sorted or searched.
+
+Here are some basic properties of arrays –
+
+- They are stored in contiguous memory locations.
+- They can be accessed programmatically through their indexes (`array[1]`, `array[0]`, etc.)
+- They are mutable.
+- Their size is fixed.
+
+---
+
+## Array initialization
+
+There are two ways to iniatilize an array in Kotlin.
+
+Using the `arrayOf()` method:
+
+```kotlin
+val numbers = arrayOf(1, 2, 3, 4)   // Implicit type declaration
+val numbers = arrayOf<Int>(1, 2, 3) // Explicit type declaration
+```
+
+Using the array constructor:
+
+```kotlin
+val numbers = Array(3, {i-> i*1})
+```
+
+---
+
+### Accessing and modifying arrays
+
+So far, we have seen how to create and initialize an array in Kotlin. Now, let’s see how to access and modify them.
+
+### get() and set()
+
+```kotlin
+val x = numbers.get(0)
+numbers.set(1, 3)
+```
+
+### Index operator
+
+The `[ ]` operator can be used to access and modify arrays.
+
+```kotlin
+val x = numbers[0]
+numbers[1] = 3
+```
+
+---
+
+template: slide_section
+
 # Classes
 
 ---
@@ -417,7 +494,28 @@ class Car {
 
 ## Constructors
 
-A class in Kotlin can have a primary constructor and one or more secondary constructors. The primary constructor is a part of the class header, and it goes after the class name and optional type parameters.
+In Kotlin, a constructor is defined by using the `constructor` statement.
+
+A class may have any number of different constructors. 
+
+
+```kotlin
+class Person { 
+    private val name: String
+    private val age: Int
+
+    public constructor(name: String, age: Int) { 
+        this.name = name
+        this.age = age
+    }
+}
+```
+
+---
+
+## Primary constructor
+
+The primary constructor is a part of the class header, and it goes after the class name and optional type parameters.
 
 ```kotlin
 class Person public constructor(
@@ -429,8 +527,61 @@ class Person public constructor(
 If the primary constructor does not have any annotations or visibility modifiers, the constructor keyword can be omitted:
 
 ```kotlin
+class Person(firstName: String, age: Int) { /* ... */ }
+```
+
+Any secondary cosntructors must call the primary constructor, if there is one.
+
+---
+
+## Constructors with named arguments
+
+Kotlin constructors support named arguments, so parameters can be ommited if they have a default value.
+
+```kotlin
+class Person(
+    firstName: String,
+    lastName: String = "",
+    age: Int
+) { 
+    // ...    
+}
+
+Person(firstName = "Eduardo", age = 21)
+```
+
+---
+
+## *init* block
+
+The `init` block is always called after the first constructor.
+
+In it, you can use the values passed in the contructor.
+
+```kotlin
 class Person(firstName: String, age: Int) { 
-    // ... 
+    public val firstName: String
+    public var canVote: Boolean
+    
+    init {
+        this.firstName = firstName
+        canVote = age > 18
+    }
+}
+```
+---
+
+## Class properties
+
+Class properties can be automatically initialized in the primary constructor, with no need to manually initialize in the `init` block.
+
+```kotlin
+class Person(public val firstName: String, age: Int) { 
+    public var canVote: Boolean
+    
+    init {
+        canVote = age > 18
+    }
 }
 ```
 
@@ -438,11 +589,20 @@ class Person(firstName: String, age: Int) {
 
 ## Inheritance
 
-In Kotlin, it is possible to inherit class properties and functions from one class to another.
-
 Using the `open` keyword in front of the superclass/parent, this makes the class other classes should inherit properties and functions from.
 
 To inherit from a class, the name of the subclass is specified, followed by a colon `:`, and then the name of the superclass.
+
+```kotlin
+open class Shape {
+    open fun draw() { /* ... */ }
+    fun fill() { /* ... */ }
+}
+
+class Circle() : Shape() {
+    override fun draw() { /* ... */ }
+}
+```
 
 ---
 
@@ -460,13 +620,10 @@ Such classes are automatically provided with methods for copying, getting a stri
 
 ```kotlin
 data class User(val name: String, val id: Int) {           
-    override fun equals(other: Any?) =
-        other is User && other.id == this.id               
+    // ...           
 }
 
-fun main() {
-    val user = User("Alex", 1)
-}
+val user = User("Alex", 1)
 ```
 
 ---
@@ -626,3 +783,74 @@ while (hour != "17:30")
     else
         doExercises()
 ```
+
+---
+
+template: slide_section
+
+# Exercises
+
+---
+
+## Hello!
+
+Create some Kotlin code that will prompt you to enter your name and age. 
+
+Print out "Hello" and then the name followed by how old they'll be next year.
+
+```md
+input:
+	Jorge
+	21
+output:
+	Hello Jorge!
+	Next year you'll be 22.
+```
+
+---
+
+## Odd or even?
+
+Write some code that checks whether or not a given number is odd or even and prints "Odd" or "Even" accordingly.
+
+```md
+input:
+	3
+output:
+	Odd
+```
+
+---
+
+## Octal
+
+Implement some Kotlin code that converts a given number in base 10 to base 8 (octal) using at least one `while` loop.
+
+```md
+input:
+	9
+output:
+	10
+```
+
+---
+
+## Personal data
+
+Write a class `Person` to store someone's personal information, such as their name, age, gender and address.
+
+The class should have a `greet()` method to display in a human friendly way that same information.
+
+### Extra
+
+If you want to make this exercise more challenging, make the class receive the birthdate of the person in question and then calculate their age.
+
+---
+
+## Shapes
+
+Define a class `Shape` and its subclasses `Triangle`, `Square` and `Circle`.
+
+It should have an `area()` method that calculates the shape's area based on its dimensions and stores it in an attribute.
+
+Override it for each subclass, adjusting the area formula for each kind of shape.

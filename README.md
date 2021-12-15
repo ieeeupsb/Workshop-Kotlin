@@ -14,8 +14,8 @@ The presentation was done using RemarkJS and you can find it [here](https://ieee
 - [Learn Kotlin by Example](https://play.kotlinlang.org/byExample/overview) - Official practical guide
 - [Kotlin Docs](https://kotlinlang.org/docs/) - Official documentation
 - [Kotlin Workshop](https://github.com/Kotlin/workshop) - Official workshop material
-- [Kotlin Tutorial](https://www.w3schools.com/kotlin) - W3 Schools tutorial
-- [Exercises](https://www.w3schools.com/kotlin/exercise.php)- W3 Schools exercises
+- [W3 Schools Tutorial](https://www.w3schools.com/kotlin)
+- [W3 Schools Exercises](https://www.w3schools.com/kotlin/exercise.php)
 
 ## Authors 
 
