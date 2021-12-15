@@ -2,7 +2,7 @@
 
 ## Presentation 🖼
 
-## Wiki 📝
+The presentation was done using RemarkJS and you can find it [here](https://ieeeupsb.github.io/Workshop-Kotlin/presentation/#1).
 
 ## Recommended IDEs 
 

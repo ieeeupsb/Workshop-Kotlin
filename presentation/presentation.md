@@ -29,6 +29,20 @@ The name comes from Kotlin Island, near St. Petersburg. Andrey Breslav mentioned
 
 ---
 
+## How to start?
+
+Kotlin files used the `.kt` extension.
+
+The entrypoint of a given file is the `main` function.
+
+```kotlin
+fun main() {
+    // Code execution starts here
+}
+```
+
+---
+
 template: slide_section
 
 # Variables
